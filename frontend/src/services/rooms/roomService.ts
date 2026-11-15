@@ -153,3 +153,4 @@ export async function deleteRoom(id: string | number): Promise<void> {
   }
   await httpClient.delete(endpoints.room(id))
 }
+

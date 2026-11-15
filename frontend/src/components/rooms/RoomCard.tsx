@@ -4,17 +4,19 @@ import { Users, MapPin } from 'lucide-react'
 import { Card, CardContent, CardFooter } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
+import { getRoomImage } from '@/services/rooms/roomImage'
 import type { Room } from '@/types'
 
 export function RoomCard({ room }: { room: Room }) {
   const { t } = useTranslation()
+  const image = getRoomImage(room)
 
   return (
     <Card className="overflow-hidden transition-shadow hover:shadow-md">
       <div className="relative aspect-[16/10] overflow-hidden bg-[var(--color-muted)]">
-        {room.imageUrl ? (
+        {image ? (
           <img
-            src={room.imageUrl}
+            src={image}
             alt={room.name}
             className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
             loading="lazy"

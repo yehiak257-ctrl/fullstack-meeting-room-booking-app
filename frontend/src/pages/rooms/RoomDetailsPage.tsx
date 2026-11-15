@@ -2,6 +2,7 @@ import { useParams, Link } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
 import { getRoomById } from '@/services/rooms/roomService'
+import { getRoomImage } from '@/services/rooms/roomImage'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Users, MapPin, ArrowLeft } from 'lucide-react'
@@ -38,6 +39,8 @@ export function RoomDetailsPage() {
     )
   }
 
+  const image = getRoomImage(room)
+
   return (
     <div className="space-y-8">
       <Button variant="ghost" size="sm" asChild>
@@ -49,8 +52,8 @@ export function RoomDetailsPage() {
 
       <div className="grid gap-8 lg:grid-cols-2">
         <div className="aspect-[4/3] overflow-hidden rounded-xl bg-[var(--color-muted)]">
-          {room.imageUrl ? (
-            <img src={room.imageUrl} alt={room.name} className="h-full w-full object-cover" />
+          {image ? (
+            <img src={image} alt={room.name} className="h-full w-full object-cover" />
           ) : (
             <div className="flex h-full items-center justify-center text-[var(--color-muted-foreground)]">
               No image
